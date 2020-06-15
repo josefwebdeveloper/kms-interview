@@ -22,7 +22,7 @@ export class StockService {
     Object.entries(params).map((p) => {
       query = query.set(p[0].toString(), p[1].toString());
     });
-    return this.http.get(`${environment.baseApi}`, {params: query});
+    return this.http.get(`${environment.Api}`, {params: query});
   }
 
 }

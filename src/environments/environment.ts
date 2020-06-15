@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApi: 'https://www.alphavantage.co/query?apikey=OYNCDJWBIG8WKH0Y'
+  Api: 'https://www.alphavantage.co/query?apikey=OYNCDJWBIG8WKH0Y'
 };
 
 /*
