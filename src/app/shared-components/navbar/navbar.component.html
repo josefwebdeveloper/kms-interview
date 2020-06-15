@@ -1,0 +1,23 @@
+<mat-toolbar class="main-container" color="accent">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field class="input-container">
+      <input matInput
+             #searchInput
+             placeholder="Stocks"
+             aria-label="stock"
+             [matAutocomplete]="auto"
+             formControlName="searchQuery">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+
+        <ng-container *ngIf="filteredStock | async as filteredStock">
+          <mat-option *ngFor="let stock of filteredStock.bestMatches "
+                      [routerLink]="['stock', stock['1. symbol']]" (click)="resetForm()" [value]="stock['1. symbol']">
+            <span>{{stock['1. symbol']}} <small>{{stock['2. name']}}</small></span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br>
+
+  </form>
+</mat-toolbar>

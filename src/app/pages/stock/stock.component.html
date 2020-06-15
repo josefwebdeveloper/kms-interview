@@ -1,0 +1,22 @@
+<div class="main">
+  <ng-container *ngIf="data$|async as data">
+    <mat-toolbar class="stock-title">
+      <span>{{data['Meta Data']['2. Symbol']}}</span><span>{{data['Meta Data']['3. Last Refreshed']|date:'shortDate'}}</span>
+    </mat-toolbar>
+
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [chartType]="'line'"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartClick)="onChartClick($event)">
+      </canvas>
+    </div>
+  </ng-container>
+  <div *ngIf="spinner" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
