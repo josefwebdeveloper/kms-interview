@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       filter(event => event instanceof HttpResponse),
       tap((event: HttpResponse<any>) => {
-        if (event.body['Note']) {
+        if (event.body['Note']||event.body['Error Message']) {
 
           let timerInterval
           Swal.fire({
@@ -47,17 +47,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (result.dismiss === Swal.DismissReason.timer) {
             }
           })
-          //
-          setTimeout(() => {
-
-          }, 5000);
-          // this.snackBar.open(event.body['Note'], 'close', {
-          //   duration: 5000,
-          //   panelClass: 'mat-primary'
-          // });
-          // this.snackBar._openedSnackBarRef.afterDismissed().subscribe(s => {
           this.router.navigateByUrl('/');
-          // });
         }
       })
     );

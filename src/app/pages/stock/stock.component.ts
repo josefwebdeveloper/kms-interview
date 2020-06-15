@@ -16,7 +16,7 @@ export class StockComponent implements OnInit {
   chartLabels = [];
   spinner = true;
   chartData = [];
-  data$: Observable<any> | Observable<StockData>;
+  data$: Observable<StockData>;
   chartOptions = {
     responsive: true
   };
@@ -42,7 +42,7 @@ export class StockComponent implements OnInit {
   }
 
   setDataForChart(params) {
-    this.spinner=true
+    this.spinner = true;
     this.data$ = this.stockService.getHttp({function: 'TIME_SERIES_DAILY', symbol: params.id})
       .pipe(map(d => {
           if (d) {

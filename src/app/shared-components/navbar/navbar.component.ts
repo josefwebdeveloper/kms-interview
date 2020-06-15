@@ -5,6 +5,7 @@ import {StockService} from '../../_services/stock.service';
 import {Router} from '@angular/router';
 import {debounceTime, mergeMap, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {SearchQueries} from '../../_model/search-query';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +14,9 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 })
 export class NavbarComponent implements OnInit {
   searchForm: FormGroup;
-  filteredStock: Observable<any>;
+  filteredStock$: Observable<SearchQueries>;
   selectedData: string;
-  trigger = this.stockService.triggerData;
+  // trigger = this.stockService.triggerData;
 
   constructor(
     private stockService: StockService,
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       searchQuery: this.formBuilder.control('')
     });
-    this.filteredStock = this.searchForm.valueChanges
+    this.filteredStock$ = this.searchForm.valueChanges
       .pipe(
         startWith(''),
         debounceTime(350),

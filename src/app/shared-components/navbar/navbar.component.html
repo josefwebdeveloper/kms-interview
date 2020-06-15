@@ -9,7 +9,7 @@
              formControlName="searchQuery">
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
 
-        <ng-container *ngIf="filteredStock | async as filteredStock">
+        <ng-container *ngIf="filteredStock$ | async as filteredStock">
           <mat-option *ngFor="let stock of filteredStock.bestMatches "
                       [routerLink]="['stock', stock['1. symbol']]" (click)="resetForm()" [value]="stock['1. symbol']">
             <span>{{stock['1. symbol']}} <small>{{stock['2. name']}}</small></span>
